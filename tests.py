@@ -18,7 +18,9 @@ class PartyTests(unittest.TestCase):
     def test_no_rsvp_yet(self):
         # FIXME: Add a test to show we see the RSVP form, but NOT the
         # party details
-        print("FIXME")
+        result = self.client.get("/")
+        self.assertIn(b"input id=\"field-name\"", result.data)
+        self.assertNotIn(b"Party Details", result.data)
 
     def test_rsvp(self):
         result = self.client.post("/rsvp",
