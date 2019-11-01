@@ -29,7 +29,8 @@ class PartyTests(unittest.TestCase):
                                   follow_redirects=True)
         # FIXME: Once we RSVP, we should see the party details, but
         # not the RSVP form
-        print("FIXME")
+        self.assertIn(b"Party Details", result.data)
+        self.assertNotIn(b"input id=\"field-name\"", result.data)
 
 
 class PartyTestsDatabase(unittest.TestCase):
